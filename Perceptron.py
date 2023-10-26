@@ -42,14 +42,14 @@ class Perceptron(object):
                 self.w_[1:] += update * xi
                 self.w_[0] += update
                 errors += int(update != 0.0)
+                print(self.w_)
             self.errors_.append(errors)
         return self
-    
+
     def net_input(self, X):
         """Oblicza całkowite pobudzenie"""
         return np.dot(X, self.w_[1:]) + self.w_[0]
-    
+
     def predict(self, X):
         """Zwraca etykietę klas po obliczeniu funkcji skoku jednostkowego"""
         return np.where(self.net_input(X) >= 0.0, 1, -1)
-    
