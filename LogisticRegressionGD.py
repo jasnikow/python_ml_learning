@@ -48,19 +48,19 @@ class LogisticRegressionGD(object):
             # Zwró􏰕 uwag􏰐, 􏰖e obliczamy teraz ‘koszt’ logistyczny, a nie # sum􏰐 kwadratów bł􏰐dów.
             cost = (-y.dot(np.log(output)) - ((1 - y).dot(np.log(1 - output))))
             self.cost_.append(cost)
-            return self
-        
-        def net_input(self, X):
-            """Obliczanie pobudzenia całkowitego"""
-            return np.dot(X, self.w_[1:]) + self.w_[0]
-        
-        def activation(self, z):
-            """Obliczanie logistycznej, sigmoidalnej funkcji aktywacji"""
-            return 1. / (1. + np.exp(-np.clip(z, -250, 250)))
-        
-        def predict(self, X):
-            """Zwraca etykiet􏰐 klasy po skoku jednostkowym"""
-            return np.where(self.net_input(X) >= 0.0, 1, 0)
-            # equivalent to:
-            # return np.where(self.activation(self.net_input(X))
-            #                            >= 0.5, 1, 0)
+        return self
+
+    def net_input(self, X):
+        """Obliczanie pobudzenia całkowitego"""
+        return np.dot(X, self.w_[1:]) + self.w_[0]
+
+    def activation(self, z):
+        """Obliczanie logistycznej, sigmoidalnej funkcji aktywacji"""
+        return 1. / (1. + np.exp(-np.clip(z, -250, 250)))
+
+    def predict(self, X):
+        """Zwraca etykiet􏰐 klasy po skoku jednostkowym"""
+        return np.where(self.net_input(X) >= 0.0, 1, 0)
+        # equivalent to:
+        # return np.where(self.activation(self.net_input(X))
+        #                            >= 0.5, 1, 0)
